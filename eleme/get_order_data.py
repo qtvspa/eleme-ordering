@@ -1,5 +1,8 @@
 # -*- coding:utf-8 -*-
 
+""" 获取订单信息（含重复内容）
+    存入txt """
+
 import ssl
 import datetime
 from urllib import request
