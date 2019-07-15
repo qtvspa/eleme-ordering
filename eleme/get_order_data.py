@@ -3,9 +3,7 @@
 import ssl
 import datetime
 from urllib import request
-from utils import stamp2date, date2stamp
-from bs4 import BeautifulSoup
-
+from eleme.utils import date2stamp
 
 
 def get_res(target_url):
