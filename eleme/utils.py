@@ -12,7 +12,7 @@ def clean_data(file_path):
     k = 0
     time_list = []
 
-    data_frame = pd.DataFrame(columns=['restaurant', 'foods', 'price'])
+    data_frame = pd.DataFrame(columns=['restaurant', 'foods', 'price', 'deliver_fee'])
 
     while k < count:
         k += 1
@@ -25,6 +25,10 @@ def clean_data(file_path):
             continue
         else:
             time_list.append(create_time)
+            if 'deliver_fee' in data['basket'].keys():
+                deliver_fee = data['basket']['deliver_fee']['price']
+            else:
+                deliver_fee = 0
             foods = data['basket']['group']
             total_amount = data['total_amount']
             restaurant_name = data['restaurant_name']
@@ -33,7 +37,7 @@ def clean_data(file_path):
                 for i in foods[0]:
                     food_data += i['name'] + ' '
 
-            data_frame.loc[create_time] = [restaurant_name, food_data, total_amount]
+            data_frame.loc[create_time] = [restaurant_name, food_data, total_amount/len(foods[0]), deliver_fee]
 
     return data_frame
 
